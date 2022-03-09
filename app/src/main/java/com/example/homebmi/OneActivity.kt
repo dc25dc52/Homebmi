@@ -10,14 +10,10 @@ class OneActivity : AppCompatActivity() {
     var TAG = OneActivity::class.java.simpleName
         lateinit var binding : ActivityOneBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityOneBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActivityOneBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-            //獲取one傳來的值
-            var name = intent.getStringExtra("NAME")
-            Log.d(TAG, "two: $name")
-
+        showBmi()
         binding.btnTwo.setOnClickListener {
             var name = binding.textTwoname.text.toString()
             var data = Intent()
@@ -26,10 +22,12 @@ class OneActivity : AppCompatActivity() {
             setResult(RESULT_OK,data)
             ////取消鍵就調用 finish() 方法
             finish()
-
         }
-
-
-
     }
+    private fun showBmi() {
+        //獲取one傳來的值
+        var name = intent.getFloatExtra("NAME",0f)
+        Log.d(TAG, "得到main的name: $name")
+    }
+
 }
